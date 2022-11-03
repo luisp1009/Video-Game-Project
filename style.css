@@ -1,0 +1,72 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-color: black;
+  background-image:url(./images/dancingAlien.gif);
+  background-repeat: no-repeat;
+  height: 100vh;
+  cursor: url(./images/alienPointer2.png), auto;
+}
+
+canvas {
+  background-image: url(./images/starsVideo.gif);
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  
+  
+}
+
+#game {
+  width: 100%;
+}
+
+.score {
+  margin-top: -30px;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 2.9rem;
+  text-align: left;
+  font-family:fantasy;
+  color: white;
+  margin-top: 30px;
+}
+
+
+
+#start-button {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color:  white;
+  padding: 0 32px;
+  border-radius: 10px;
+  color: green;
+  height: 48px;
+  font-size: 18px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+}
+#mission {
+    margin-top: 10px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    background-color:  white;
+    padding: 0 32px;
+    border-radius: 10px;
+    color: green;
+    height: 48px;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  
+  }
+
