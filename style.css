@@ -9,22 +9,17 @@ body {
   background-color: black;
   background-image:url(./images/dancingAlien.gif);
   background-repeat: no-repeat;
-  height: 100vh;
   cursor: url(./images/alienPointer2.png), auto;
 }
 
 canvas {
   background-image: url(./images/starsVideo.gif);
   background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  
-  
+
+
 }
 
-#game {
-  width: 100%;
-}
+
 
 .score {
   margin-top: -30px;
