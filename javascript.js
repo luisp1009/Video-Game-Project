@@ -72,7 +72,7 @@ function loser(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '400px Verdana, Geneva, Tahoma, sans-serif';
-    ctx.fillText('☠️', 300, 450);
+    ctx.fillText('☠️', 280, 450);
     ctx.shadowBlur = 0;   
   }
   //loser()
