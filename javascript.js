@@ -45,7 +45,7 @@ function showDirections(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '30px fantasy';
-    ctx.fillText('SPACEBAR to shot', 300, 350);
+    ctx.fillText('SPACEBAR to shoot', 300, 350);
     ctx.shadowBlur = 0;  
   }
   
@@ -71,8 +71,8 @@ function winner(){
 function loser(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '200px Verdana, Geneva, Tahoma, sans-serif';
-    ctx.fillText('☠️', 270, 300);
+    ctx.font = '400px Verdana, Geneva, Tahoma, sans-serif';
+    ctx.fillText('☠️', 300, 450);
     ctx.shadowBlur = 0;   
   }
   //loser()
