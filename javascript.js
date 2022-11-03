@@ -14,11 +14,7 @@ function welcome(){
     ctx.font = '70px fantasy';
     ctx.fillText('ALIEN INVASI👽N ', 220, 350);
     ctx.shadowBlur = 0;  
-    let audioElement = document.getElementById("audio4");
-    audioElement.play();
-    setTimeout(function() {
-      audioElement.volume = 0.25;
-    },);
+    
 
   }}
 welcome()
@@ -37,7 +33,7 @@ function showDirections(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '30px fantasy';
-    ctx.fillText('Kill 50 🛸 to save the planet.', 300, 250);
+    ctx.fillText('Kill 25 🛸 to save the planet.', 300, 250);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
@@ -75,8 +71,8 @@ function winner(){
 function loser(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '50px Verdana, Geneva, Tahoma, sans-serif';
-    ctx.fillText('☠️ TRY IT AGAIN!', 270, 300);
+    ctx.font = '200px Verdana, Geneva, Tahoma, sans-serif';
+    ctx.fillText('☠️', 270, 300);
     ctx.shadowBlur = 0;   
   }
   //loser()
@@ -373,6 +369,11 @@ window.onload = () => {
  function startGame (){
     myInterval = setInterval(animationLoop, 16);
     scoreElement.innerHTML = `Score: ${score}`;
+    let audioElement = document.getElementById("audio4");
+    audioElement.play();
+    setTimeout(function() {
+      audioElement.volume = 0.5;
+    },);
  }
 
  };
