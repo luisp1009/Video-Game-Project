@@ -2,17 +2,19 @@ const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
 
+
+
+
 document.getElementById('mission').onclick = () => {
   showDirections();
 };
-
 
 function welcome(){
   ctx.clearRect(0,0,canvas.width,canvas.height)
   if (canvas.getContext) {
     ctx.fillStyle = 'GREEN';
-    ctx.font = '70px fantasy';
-    ctx.fillText('ALIEN INVASI👽N ', 220, 350);
+    ctx.font = '30px fantasy';
+    ctx.fillText('ALIEN INVASI👽N ', 280, 350);
     ctx.shadowBlur = 0;  
     
 
@@ -45,14 +47,14 @@ function showDirections(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '30px fantasy';
-    ctx.fillText('SPACEBAR to shoot', 300, 350);
+    ctx.fillText('or a bluetooth controller 🎮', 300, 350);
     ctx.shadowBlur = 0;  
   }
   
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '50px fantasy';
-    ctx.fillText('👽 ☠️', 300, 420);
+    ctx.fillText('HAPPY HUNTING 👽', 300, 420);
     ctx.shadowBlur = 0;  
   }
 }
@@ -61,8 +63,8 @@ function showDirections(){
 function winner(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '50px fantasy';
-    ctx.fillText('YOU DID IT!', 330, 300);
+    ctx.font = '300px fantasy';
+    ctx.fillText('👍', 280, 350);
     ctx.shadowBlur = 0;   
   }
   //winner()
@@ -71,8 +73,8 @@ function winner(){
 function loser(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '400px Verdana, Geneva, Tahoma, sans-serif';
-    ctx.fillText('☠️', 280, 450);
+    ctx.font = '300px Verdana, Geneva, Tahoma, sans-serif';
+    ctx.fillText('☠️', 280, 350);
     ctx.shadowBlur = 0;   
   }
   //loser()
@@ -253,8 +255,13 @@ class Bullet{
 
 
 //moving keys fucntion
+var shootingTimer = setInterval(function () {
+  player.shoot();
+  // document.getElementById('audio').play();
+}, 500); // Shoot every 500 milliseconds
+
 window.addEventListener("keydown", function (event) {
-    event.preventDefault()
+  event.preventDefault();
   switch (event.code) {
     case "ArrowUp":
       player.moveUp();
@@ -268,11 +275,71 @@ window.addEventListener("keydown", function (event) {
     case "ArrowRight":
       player.moveRight();
       break;
-    case "Space":
-    player.shoot();
-    document.getElementById('audio').play();
-    break;
   }
+});
+window.addEventListener("touchstart", function (event) {
+  event.preventDefault();
+  // Get the position of the touch on the screen
+  var touch = event.touches[0];
+  var touchX = touch.clientX;
+  var touchY = touch.clientY;
+  // Determine which direction to move based on the touch position
+  if (touchY < window.innerHeight / 2) {
+    // Move up
+    player.moveUp();
+  } else if (touchY > window.innerHeight / 2) {
+    // Move down
+    player.moveDown();
+  }
+  if (touchX < window.innerWidth / 2) {
+    // Move left
+    player.moveLeft();
+  } else if (touchX > window.innerWidth / 2) {
+    // Move right
+    player.moveRight();
+  }
+});
+
+// Register an event listener for the gamepadconnected event
+window.addEventListener("gamepadconnected", function (event) {
+  // Start a timer to check the gamepad state at regular intervals
+  var timer = setInterval(function () {
+    // Get the array of connected gamepads
+    var gamepads = navigator.getGamepads();
+    // Check if the controller we want is connected
+    if (gamepads[event.gamepad.index]) {
+      // Get the gamepad object
+      var gamepad = gamepads[event.gamepad.index];
+      // Get the state of the analog sticks and buttons
+      var xAxis = gamepad.axes[0];
+      var yAxis = gamepad.axes[1];
+      var aButton = gamepad.buttons[0];
+      var bButton = gamepad.buttons[1];
+      // Use the controller input to move the player
+      if (yAxis < -0.5) {
+        player.moveUp();
+      } else if (yAxis > 0.5) {
+        player.moveDown();
+      }
+      if (xAxis < -0.5) {
+        player.moveLeft();
+      } else if (xAxis > 0.5) {
+        player.moveRight();
+      }
+      if (aButton.pressed) {
+        player.doActionA();
+      }
+      if (bButton.pressed) {
+        player.doActionB();
+      }
+    }
+  }, 100); // Check the gamepad state every 100 milliseconds
+});
+
+// Register an event listener for the gamepaddisconnected event
+window.addEventListener("gamepaddisconnected", function (event) {
+  // Stop the timer when the controller is disconnected
+  clearInterval(timer);
 });
 
 let alienArray = [];
@@ -293,7 +360,7 @@ const animationLoop = () => {
       
   
     frameCount++
-      if (frameCount % 30 == 0){
+      if (frameCount % 50 == 0){
   
           let myNewAlien = new Enemy(canvas.width * Math.random(), 0, "hsl(" + Math.random() * 360 + ", 100%, 50%)", 0);
           alienArray.push(myNewAlien);
@@ -377,4 +444,3 @@ window.onload = () => {
  }
 
  };
- 
