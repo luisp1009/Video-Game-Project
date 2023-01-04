@@ -9,61 +9,62 @@ document.getElementById('mission').onclick = () => {
   showDirections();
 };
 
-function welcome(){
-  ctx.clearRect(0,0,canvas.width,canvas.height)
-  if (canvas.getContext) {
-    ctx.fillStyle = 'GREEN';
-    ctx.font = '30px fantasy';
-    ctx.fillText('ALIEN INVASI👽N ', 280, 350);
-    ctx.shadowBlur = 0;  
+// function welcome(){
+//   ctx.clearRect(0,0,canvas.width,canvas.height)
+//   if (canvas.getContext) {
+//     ctx.fillStyle = 'GREEN';
+//     ctx.font = '30px fantasy';
+//     ctx.fillText('ALIEN INVASI👽N ', 280, 350);
+//     ctx.shadowBlur = 0;  
     
 
-  }}
-welcome()
+//   }}
+// welcome()
 
 
-function showDirections(){
+function welcome(){
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  if (canvas.getContext) {
-    ctx.fillStyle = 'white';
-    ctx.font = '30px fantasy';
-    ctx.fillText('YOUR MISSION:', 300, 200);
-    ctx.shadowBlur = 0;  
+  // if (canvas.getContext) {
+  //   ctx.fillStyle = 'white';
+  //   ctx.font = '30px fantasy';
+  //   ctx.fillText('YOUR MISSION:', 300, 200);
+  //   ctx.shadowBlur = 0;  
 
-  }
+  // }
   
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '30px fantasy';
+    ctx.font = '40px Roboto';
     ctx.fillText('Kill 25 🛸 to save the planet.', 300, 250);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '30px fantasy';
+    ctx.font = '40px Roboto';
     ctx.fillText('⬆️  ➡️  ⬇️  ⬅️ to control your 🚀', 300, 300);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '30px fantasy';
-    ctx.fillText('or a bluetooth controller 🎮', 300, 350);
+    ctx.font = '40px Roboto';
+    ctx.fillText('or use a bluetooth controller 🎮', 300, 350);
     ctx.shadowBlur = 0;  
   }
   
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '50px fantasy';
+    ctx.font = '50px Roboto';
     ctx.fillText('HAPPY HUNTING 👽', 300, 420);
     ctx.shadowBlur = 0;  
   }
 }
+welcome()
 // showDirections()
 
 function winner(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '300px fantasy';
+    ctx.font = '300px Roboto';
     ctx.fillText('👍', 280, 350);
     ctx.shadowBlur = 0;   
   }
@@ -73,7 +74,7 @@ function winner(){
 function loser(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
-    ctx.font = '300px Verdana, Geneva, Tahoma, sans-serif';
+    ctx.font = '300px Roboto';
     ctx.fillText('☠️', 280, 350);
     ctx.shadowBlur = 0;   
   }
@@ -246,7 +247,7 @@ class Bullet{
         this.y -= this.speed;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.strokeStyle ="hsl(" + Math.random() * 360 + ", 100%, 50%)";
-        ctx.lineWidth  = 2;
+        ctx.lineWidth  = 5;
         ctx.strokeRect(this.x, this.y, this.width, this.height);
       
     }
@@ -258,7 +259,7 @@ class Bullet{
 var shootingTimer = setInterval(function () {
   player.shoot();
   // document.getElementById('audio').play();
-}, 500); // Shoot every 500 milliseconds
+}, 400); // Shoot every 500 milliseconds
 
 window.addEventListener("keydown", function (event) {
   event.preventDefault();
