@@ -22,15 +22,35 @@
 <div class="portraitModeHidden mobileBtn">
    <h1>🚀 💥 👽</h1>
     <h1 class="score">SCORE: <span>0</span></h1>
-    <button id="start-button">StartGame</button></div>
+    <button id="start-button">Start Game</button>
+    <!-- <button id="pause-button">Pause Game</button>
+    <button id="pause-button" onclick="pauseGame()">Pause</button> -->
+
+    
+   
+  </div>
+  
     <button id="mission">Mission</button>
     <div class="cursor"></div>
   
-
-
+    
+  <div id="canvasSides">
+    <div id="controls">
+      <button id="up-button">⬆️</button>
+      <br>
+      <button id="left-button">⬅️</button>
+      <button id="right-button">➡️</button>
+      <br>
+      <button id="down-button">⬇️</button>
+    </div>
     <canvas id="game" width="960" height="610">
       
     </canvas>
+    <div id="shooting">
+    <button id="shoot-button">Shoot</button>
+  </div>
+  </div>
+
     
     
     <audio id="audio" controls style="display:none">

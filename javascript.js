@@ -1,60 +1,39 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 
-
-
-
-
 document.getElementById('mission').onclick = () => {
   showDirections();
 };
 
-// function welcome(){
-//   ctx.clearRect(0,0,canvas.width,canvas.height)
-//   if (canvas.getContext) {
-//     ctx.fillStyle = 'GREEN';
-//     ctx.font = '30px fantasy';
-//     ctx.fillText('ALIEN INVASI👽N ', 280, 350);
-//     ctx.shadowBlur = 0;  
-    
-
-//   }}
-// welcome()
 
 
 function welcome(){
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  // if (canvas.getContext) {
-  //   ctx.fillStyle = 'white';
-  //   ctx.font = '30px fantasy';
-  //   ctx.fillText('YOUR MISSION:', 300, 200);
-  //   ctx.shadowBlur = 0;  
-
-  // }
+ 
   
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '40px Roboto';
-    ctx.fillText('Kill 25 🛸 to save the planet.', 300, 250);
+    ctx.fillText('Kill 25 🛸 to save the planet.', 250, 250);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '40px Roboto';
-    ctx.fillText('⬆️  ➡️  ⬇️  ⬅️ to control your 🚀', 300, 300);
+    ctx.fillText('⬆️  ➡️  ⬇️  ⬅️ to control your 🚀', 250, 300);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '40px Roboto';
-    ctx.fillText('or use a bluetooth controller 🎮', 300, 350);
+    ctx.fillText('or use a bluetooth controller 🎮', 250, 350);
     ctx.shadowBlur = 0;  
   }
   
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '50px Roboto';
-    ctx.fillText('HAPPY HUNTING 👽', 300, 420);
+    ctx.fillText('HAPPY HUNTING 👽', 250, 420);
     ctx.shadowBlur = 0;  
   }
 }
@@ -115,7 +94,7 @@ class Player {
   moveDown() {
     if (this.y + this.height < canvas.height) {
         this.y += 30;
-        vy = 5;
+        // vy = 5;
   }
   }
   moveLeft() {
@@ -254,12 +233,13 @@ class Bullet{
     
 }
 
+//AUTO SHOOTING FEATURE
 
 //moving keys fucntion
-var shootingTimer = setInterval(function () {
-  player.shoot();
-  // document.getElementById('audio').play();
-}, 400); // Shoot every 500 milliseconds
+// var shootingTimer = setInterval(function () {
+//   player.shoot();
+//   // document.getElementById('audio').play();
+// }, 400); // Shoot every 500 milliseconds
 
 window.addEventListener("keydown", function (event) {
   event.preventDefault();
@@ -276,30 +256,109 @@ window.addEventListener("keydown", function (event) {
     case "ArrowRight":
       player.moveRight();
       break;
+      case "Space":
+      player.shoot();
+      break;
   }
 });
-window.addEventListener("touchstart", function (event) {
-  event.preventDefault();
-  // Get the position of the touch on the screen
-  var touch = event.touches[0];
-  var touchX = touch.clientX;
-  var touchY = touch.clientY;
-  // Determine which direction to move based on the touch position
-  if (touchY < window.innerHeight / 2) {
-    // Move up
+
+
+//MOVING WITH A TOUCH SCREEN ON SIDES
+
+// window.addEventListener("touchstart", function (event) {
+//   // event.preventDefault();
+//   // Get the position of the touch on the screen
+//   var touch = event.touches[0];
+//   var touchX = touch.clientX;
+//   var touchY = touch.clientY;
+//   // Determine which direction to move based on the touch position
+//   if (touchY < window.innerHeight / 2) {
+//     // Move up
+//     player.moveUp();
+//   } else if (touchY > window.innerHeight / 2) {
+//     // Move down
+//     player.moveDown();
+//   }
+//   if (touchX < window.innerWidth / 2) {
+//     // Move left
+//     player.moveLeft();
+//   } else if (touchX > window.innerWidth / 2) {
+//     // Move right
+//     player.moveRight();
+//   }
+// });
+
+
+// Variables to track if a button is being held
+let upPressed = false;
+let downPressed = false;
+let leftPressed = false;
+let rightPressed = false;
+let shootPressed = false;
+
+// Event listeners for movement buttons
+document.getElementById("up-button").addEventListener("touchstart", function(){
+    upPressed = true;
     player.moveUp();
-  } else if (touchY > window.innerHeight / 2) {
-    // Move down
-    player.moveDown();
-  }
-  if (touchX < window.innerWidth / 2) {
-    // Move left
-    player.moveLeft();
-  } else if (touchX > window.innerWidth / 2) {
-    // Move right
-    player.moveRight();
-  }
 });
+document.getElementById("up-button").addEventListener("touchend", function(){
+    upPressed = false;
+});
+
+document.getElementById("down-button").addEventListener("touchstart", function(){
+    downPressed = true;
+    player.moveDown();
+});
+document.getElementById("down-button").addEventListener("touchend", function(){
+    downPressed = false;
+});
+
+document.getElementById("left-button").addEventListener("touchstart", function(){
+    leftPressed = true;
+    player.moveLeft();
+});
+document.getElementById("left-button").addEventListener("touchend", function(){
+    leftPressed = false;
+});
+
+document.getElementById("right-button").addEventListener("touchstart", function(){
+    rightPressed = true;
+    player.moveRight();
+});
+document.getElementById("right-button").addEventListener("touchend", function(){
+    rightPressed = false;
+});
+
+document.getElementById("shoot-button").addEventListener("touchstart", function(){
+  shootPressed = true;
+  player.shoot();
+});
+document.getElementById("shoot-button").addEventListener("touchend", function(){
+  shootPressed = false;
+});
+
+
+// Continuously check if buttons are being held and move player accordingly
+setInterval(function(){
+    if(upPressed){
+        player.moveUp();
+    }
+    if(downPressed){
+        player.moveDown();
+    }
+    if(leftPressed){
+        player.moveLeft();
+    }
+    if(rightPressed){
+        player.moveRight();
+    }
+    if(shootPressed){
+      player.shoot();
+  }
+}, 100); // adjust the interval according to the need
+
+
+
 
 // Register an event listener for the gamepadconnected event
 window.addEventListener("gamepadconnected", function (event) {
@@ -313,26 +372,31 @@ window.addEventListener("gamepadconnected", function (event) {
       var gamepad = gamepads[event.gamepad.index];
       // Get the state of the analog sticks and buttons
       var xAxis = gamepad.axes[0];
-      var yAxis = gamepad.axes[1];
-      var aButton = gamepad.buttons[0];
-      var bButton = gamepad.buttons[1];
-      // Use the controller input to move the player
-      if (yAxis < -0.5) {
-        player.moveUp();
-      } else if (yAxis > 0.5) {
-        player.moveDown();
-      }
-      if (xAxis < -0.5) {
-        player.moveLeft();
-      } else if (xAxis > 0.5) {
-        player.moveRight();
-      }
-      if (aButton.pressed) {
-        player.doActionA();
-      }
-      if (bButton.pressed) {
-        player.doActionB();
-      }
+var yAxis = gamepad.axes[1];
+var crossButton = gamepad.buttons[0];
+var circleButton = gamepad.buttons[1];
+var squareButton = gamepad.buttons[2];
+var triangleButton = gamepad.buttons[3];
+
+// Use the controller input to move the player
+if (yAxis < -0.5) {
+  player.moveUp();
+} else if (yAxis > 0.5) {
+  player.moveDown();
+}
+if (xAxis < -0.5) {
+  player.moveLeft();
+} else if (xAxis > 0.5) {
+  player.moveRight();
+}
+if (crossButton.pressed) {
+  player.doActionA();
+}
+if (circleButton.pressed) {
+  player.doActionB();
+}
+
+
     }
   }, 100); // Check the gamepad state every 100 milliseconds
 });
@@ -428,12 +492,19 @@ function setCommonStyle(){
     ctx.shadowBlur = 30;    
 };
 
+
+
+
+
 window.onload = () => {
-    document.getElementById('start-button').onclick = () => {
+
+
+    document.getElementById('start-button', {passive:false} ).onclick = () => {
       startGame();
-      
-     
+
     };
+   
+    
  function startGame (){
     myInterval = setInterval(animationLoop, 16);
     scoreElement.innerHTML = `Score: ${score}`;
@@ -442,6 +513,59 @@ window.onload = () => {
     setTimeout(function() {
       audioElement.volume = 0.5;
     },);
+  
  }
 
+
+//  class Player {
+//   constructor() {
+//     this.paused = false;
+//   }
+
+//   togglePause() {
+//     this.paused = !this.paused;
+//   }
+// }
+
+// const player = new Player();
+
+// const startButton = document.querySelector('#start-button');
+// startButton.addEventListener('click', () => {
+//   player.togglePause();
+//   if (player.paused) {
+//     startButton.textContent = 'Pause';
+//   } else {
+//     startButton.textContent = 'Resume';
+//   }
+// });
+
+
  };
+ 
+//  let isPaused = true;
+//  let gameInterval;
+ 
+//  const pauseButton = document.getElementById('pause-button');
+ 
+//  pauseButton.addEventListener('click', () => {
+//    isPaused = !isPaused; // Toggle the pause state
+//    if (isPaused) {
+//      // Pause the game by clearing the interval
+//      clearInterval(gameInterval);
+//    } else {
+//      // Resume the game by setting the interval again
+//      gameInterval = setInterval(animationLoop, 16); 
+//      // Run the game loop at 60 FPS
+//    }
+   
+//  });
+ 
+
+ 
+
+
+ 
+ 
+
+
+

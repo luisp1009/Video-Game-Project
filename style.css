@@ -15,6 +15,13 @@ body {
 }
 
 
+#destroy-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* Add other styles as needed */
+}
+
 .portrait-message{
   color: white;
   background-color: black;
@@ -53,14 +60,41 @@ img{
   }
   #start-button {
     display: none !important;
+    
   }
+  #pause-button {
+    display: none !important;
+
+  }
+
+  
   .portraitModeHidden{
     display: none;
   }
   h1{
     display: none;
-
   }
+  #up-button{
+    display: none !important;
+  }
+
+  #down-button{
+    display: none !important;
+  }
+
+  #right-button{
+    display: none !important;
+  }
+
+  #left-button{
+    display: none !important;
+  }
+
+  #shoot-button{
+    display: none !important;
+  }
+
+ 
 }
 
 @media screen and (orientation: landscape) {
@@ -77,6 +111,16 @@ canvas {
   background-size: 100%;
   
 }
+
+#canvasSides {
+  display: flex;
+}
+
+#shoot-button{
+  height: 50px;
+  width: 100px;
+}
+
 
 
 .score {
@@ -108,6 +152,23 @@ h1 {
   height: 48px;
   font-size: 18px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin-right: 5px;
+
+}
+
+
+#pause-button {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color:  white;
+  padding: 0 32px;
+  border-radius: 10px;
+  color: green;
+  height: 48px;
+  font-size: 18px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 5px;
 
 }
 #mission {
@@ -125,6 +186,30 @@ h1 {
     visibility: hidden;
   
   }
+  
+  @media screen and (min-width: 845px){
+
+    #up-button{
+      display: none !important;
+    }
+  
+    #down-button{
+      display: none !important;
+    }
+  
+    #right-button{
+      display: none !important;
+    }
+  
+    #left-button{
+      display: none !important;
+    }
+  
+    #shoot-button{
+      display: none !important;
+    }
+  }
+
 
 
   @media screen and (max-width: 845px){
@@ -132,12 +217,64 @@ h1 {
       width: 65% !important;
       background-image: url(./images/starsVideo.gif);
       background-size: 100%;
-      
+      margin: 0 10px;
     }
+#controls{
+  margin-top: 75px;
+}
+
+#up-button{
+  width: 125px;
+  height: 50px;
+  margin-bottom: 5px;
+  background-color: white;
+  border-radius: 15px;
+}
+#right-button{
+  width: 60px;
+  height: 50px;
+  background-color: white;
+  border-radius: 15px;
+  
+}
+#left-button{
+  width: 60px;
+  height: 50px;
+  background-color: white;
+  border-radius: 15px;
+}
+#down-button{
+  width: 125px;
+  height: 50px;
+  margin-top: 5px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+#shooting{
+  margin-top: 95px;
+  
+}
+
+#shoot-button{
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 15px;
+  color: green;
+  font-weight:normal;
+  font-size: 20px;
+
+}
+  
+
     #mission{
       display: none !important;
     }
     #start-button{
+      margin-bottom: 15px;
+    }
+    #pause-button{
       margin-bottom: 15px;
     }
 
@@ -163,6 +300,16 @@ h1{
 
 
 #start-button {
+  padding: 10px;
+  background-color:  white;
+  border-radius: 10px;
+  color: green;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+
+
+}
+#pause-button {
   padding: 10px;
   background-color:  white;
   border-radius: 10px;
