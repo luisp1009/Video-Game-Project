@@ -395,6 +395,12 @@ if (crossButton.pressed) {
 if (circleButton.pressed) {
   player.doActionB();
 }
+if (squareButton.pressed) {
+  player.shoot();
+}
+if (triangleButton.pressed) {
+  player.doActionB();
+}
 
 
     }
