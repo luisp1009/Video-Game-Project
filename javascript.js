@@ -20,7 +20,7 @@ function welcome(){
   if (canvas.getContext) {
     ctx.fillStyle = 'white';
     ctx.font = '40px Roboto';
-    ctx.fillText('⬆️  ➡️  ⬇️  ⬅️ to control your 🚀', 250, 300);
+    ctx.fillText('⬆️  ➡️  ⬇️  ⬅️ SPACEBAR to shoot', 250, 300);
     ctx.shadowBlur = 0;  
   }
   if (canvas.getContext) {
@@ -42,6 +42,10 @@ welcome()
 
 function winner(){
   if (canvas.getContext) {
+    if(!backgroundMusic.paused){
+      backgroundMusic.pause();
+      backgroundMusic.currentTime = 0;
+      }
     ctx.fillStyle = 'white';
     ctx.font = '300px Roboto';
     ctx.fillText('👍', 280, 350);
@@ -52,11 +56,16 @@ function winner(){
 
 function loser(){
   if (canvas.getContext) {
+    if(!backgroundMusic.paused){
+      backgroundMusic.pause();
+      backgroundMusic.currentTime = 0;
+      }
     ctx.fillStyle = 'white';
     ctx.font = '300px Roboto';
     ctx.fillText('☠️', 280, 350);
     ctx.shadowBlur = 0;   
   }
+  
   //loser()
 }
 
@@ -232,6 +241,13 @@ class Bullet{
     }
     
 }
+
+// Declare a variable to store the background music
+let backgroundMusic;
+
+
+
+
 
 //AUTO SHOOTING FEATURE
 
@@ -474,6 +490,7 @@ const animationLoop = () => {
       winner()
       bulletController.bullets = []
       alienArray = []
+      document.getElementById('audio4').play();
       //scoreElement.innerHTML = `Score: ${score}`;
     } else if(lostGame){
         clearInterval(myInterval)
@@ -483,6 +500,7 @@ const animationLoop = () => {
         bulletController.bullets = []
         alienArray = []
         document.getElementById('audio1').play();
+        document.getElementById('audio5').play();
         //scoreElement.innerHTML = `Score: ${score}`;
     }
   }
@@ -504,74 +522,47 @@ function setCommonStyle(){
 
 window.onload = () => {
 
-
+  
     document.getElementById('start-button', {passive:false} ).onclick = () => {
       startGame();
-
+     
     };
    
     
  function startGame (){
     myInterval = setInterval(animationLoop, 16);
     scoreElement.innerHTML = `Score: ${score}`;
-    let audioElement = document.getElementById("audio4");
-    audioElement.play();
-    setTimeout(function() {
-      audioElement.volume = 0.5;
-    },);
+
+    // Add a function to play background music
+function playBackgroundMusic() {
+  backgroundMusic = new Audio('./images/[YT2mp3.info] - Retro Video Game Music - Interplanetary (320kbps).mp3');
+  backgroundMusic.loop = true;
+  backgroundMusic.play();
+  backgroundMusic.volume = 0.2;
+}
+
+// Call the playBackgroundMusic function to start playing the background music
+playBackgroundMusic();
+
+let muteButton = document.getElementById("pause-button");
+muteButton.addEventListener("click", muteMusic);
+
+
+function muteMusic() {
+  if (backgroundMusic.muted) {
+    backgroundMusic.muted = false;
+    // muteButton.innerHTML = "Mute";
+  } else {
+    backgroundMusic.muted = true;
+    // muteButton.innerHTML = "Unmute";
+  }
+}
+
   
  }
 
 
-//  class Player {
-//   constructor() {
-//     this.paused = false;
-//   }
-
-//   togglePause() {
-//     this.paused = !this.paused;
-//   }
-// }
-
-// const player = new Player();
-
-// const startButton = document.querySelector('#start-button');
-// startButton.addEventListener('click', () => {
-//   player.togglePause();
-//   if (player.paused) {
-//     startButton.textContent = 'Pause';
-//   } else {
-//     startButton.textContent = 'Resume';
-//   }
-// });
 
 
  };
  
-//  let isPaused = true;
-//  let gameInterval;
- 
-//  const pauseButton = document.getElementById('pause-button');
- 
-//  pauseButton.addEventListener('click', () => {
-//    isPaused = !isPaused; // Toggle the pause state
-//    if (isPaused) {
-//      // Pause the game by clearing the interval
-//      clearInterval(gameInterval);
-//    } else {
-//      // Resume the game by setting the interval again
-//      gameInterval = setInterval(animationLoop, 16); 
-//      // Run the game loop at 60 FPS
-//    }
-   
-//  });
- 
-
- 
-
-
- 
- 
-
-
-
